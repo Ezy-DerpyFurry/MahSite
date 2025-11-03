@@ -1,0 +1,134 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #000000, #2f0044);
+    perspective: 450px;
+}
+
+.button3d {
+    z-index: 2;
+    cursor: pointer;
+    position: absolute;
+    bottom: 34%;
+    right: 45%;
+    background: rgba(0,0,0,0);
+    color: white;
+    border: solid 6px rgba(255,255,255,.5);
+    font-size: 1.9em;
+    box-shadow: 0 0px 20px rgba(192, 3, 240, 0.4);
+    transform: rotateY(-30deg) rotateX(90deg) rotateZ(20deg);
+    transition: transform 0.4s, bottom 0.4s, box-shadow 0.4s;
+}
+
+#welcometext {
+  position: absolute;
+  top: 20%;
+  color: rgb(255, 255, 255);
+  padding: 1rem 2rem;
+  font-size: 4rem;
+  border: none;
+  border-radius: 8px;
+}
+
+#welcometext.animate {
+  animation: fadeInUp 4.2s ease-out forwards;
+}
+
+#welcometext.introAnimate {
+  animation: introFadeIn 2s ease-out forwards;
+}
+
+#button3d.animateLeave {
+  animation: HideButton 4.2s ease-out forwards;
+}
+
+@keyframes HideButton {
+  0% {
+    transform: rotateY(-30deg) rotateX(90deg) rotateZ(20deg);
+  }
+
+  40% {
+    opacity: 0;
+    perspective: 1px;
+    transform: rotateY(0deg) rotateX(100deg) rotateZ(0deg);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes introFadeIn {
+  0% {
+    transform: translateY(80px) rotateY(-30deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(40px);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-120px) rotateY(0deg) rotateX(-90deg);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-120px) rotateY(0deg) rotateX(-90deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(40px);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(80px) rotateY(-30deg);
+  }
+}
+
+
+.backButton3d {
+    z-index: 1;
+    position: absolute;
+    bottom: 34.5%;
+    right: 45.5%;
+    background: rgba(0, 0, 0, .1);
+    color: rgba(0,0,0,0);
+    border: none;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+    transform: rotateY(-30deg) rotateX(90deg) rotateZ(20deg);
+    transform-style: preserve-3d;
+    transition: background 0.3s;
+}
+
+.base {
+    user-select: none;
+    padding: 40px 80px;
+    font-size: 1.9em;
+}
+
+.button3d:hover, .backButton3d:hover ~ .button3d {
+    bottom: 40%;
+    transform: rotateY(-30deg) rotateX(60deg) rotateZ(20deg);
+}
+
+.button3d:hover ~ .backButton3d {
+    background: rgba(0, 0, 0,.2);
+}
